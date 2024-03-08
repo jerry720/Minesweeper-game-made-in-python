@@ -1,0 +1,72 @@
+Game design document
+
+Outline:
+A game of minesweeper, where the player attempts to uncover all the squares
+where there are no mines. The player will be aided by numbers indicating 
+how many mines are in the vicinity and will be able to put up flags to help
+visualise the board. A player wins the game if all of the non-mine squares 
+are uncovered. A player loses if a mined squared is triggered and all of the 
+mines are detonated.
+
+There will be several modes to choose from, harder levels will have larger grid 
+sizes and more mines. There is also a timer installation, which is to measure 
+the amount of time elapsed for the level to be completed.
+
+
+Program and libraries:
+    - Python
+    - Tkinter library
+    - Tkinter PhotoImage and Pillow (PIL)
+    - Image files
+    - Random
+
+Logic and implementation:
+(Generating the grid of squares)
+    - An iterative for-loop is used to generate all the squares
+    - Each square is given an unique identifier, i.e. a tuple (row, column)
+    - Mines are randomly allocated based on a given ratio
+    - Numbers are generated surrounding each mine
+
+
+(Core logic)
+    - A grid of interactive button widgets are generated
+    - Each button has a corresponding image
+    - A seperate 2D array is used to store the states of the square
+    - For example: [0=Empty square, 1=Mine]
+    - Left click uncovers the square (and all adjacent squares that are not mines and numbers)
+    - Right click flags a square
+    - When a square is left clicked, it's unique tuple ID is unpacked and used as 
+      row and column indexes to check in the 2D list for whether that square is a mine or not.
+    - A count of the remaining squares is stored, when the count is equal to 0, the user has won the game
+    - When a square with a mine is uncovered, all of the unflagged mines in the grid detonates
+
+(Algorithms)
+    - Iterative algorithm
+    - Graph traversal algorithm
+    - All connected neighbours (recursive or breadth-first)
+
+(Design)
+    - Code chunks are organised into functions for reusability
+    - A game class is created to enable easy variable access
+    - Each square is represented as a customized class, with additional variables
+
+
+(Scalability)
+    - Using flask and HTML display game on a localhost webpage
+
+Images needed:
+    - Plain square image (varying colours of green?)
+    - Uncovered square image (maroon?)
+    - Images of squares containing numbers 1-5
+    - Image of a mine
+    - Image of a flag
+    - Image of an incorrect flag
+
+
+
+Current problems:
+    - How to detect a win;
+        currently, remaining_squares count go into the negatives
+        debugging problem
+
+Evaluation (leave until finish):
